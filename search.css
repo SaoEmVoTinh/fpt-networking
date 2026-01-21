@@ -1,0 +1,396 @@
+/* ============================================================
+   SEARCH PAGE - MANUAL THEME SYSTEM
+   Version: 4.0 - Refactored with Manual Light/Dark Mode
+============================================================ */
+
+/* =========================
+   ROOT VARIABLES - LIGHT MODE (DEFAULT)
+========================= */
+:root {
+    /* FPT Brand Colors */
+    --fpt-orange: #ff6600;
+    --fpt-blue: #0057b8;
+    --fpt-green: #16a34a;
+    --fpt-orange-glow: #ff7a1a;
+    --fpt-blue-glow: #0070e8;
+    
+    /* Light Mode */
+    --bg-body: #f4f7fb;
+    --bg-card: #ffffff;
+    --text-main: #1e293b;
+    --text-sub: #64748b;
+    --border: #e2e8f0;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+    
+    /* Transitions */
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================
+   DARK MODE OVERRIDE
+========================= */
+.dark-mode {
+    --bg-body: #0f172a;
+    --bg-card: #1e293b;
+    --text-main: #f1f5f9;
+    --text-sub: #94a3b8;
+    --border: #334155;
+    
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+/* =========================
+   GLOBAL RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-body);
+    color: var(--text-main);
+    line-height: 1.6;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-thumb {
+    background: var(--fpt-blue);
+    border-radius: 20px;
+}
+::-webkit-scrollbar-track { background: transparent; }
+
+/* =========================
+   THEME TOGGLE BUTTON - Bottom Left
+========================= */
+.theme-toggle {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    width: 52px;
+    height: 52px;
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 24px;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    z-index: 2000;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+/* =========================
+   SEARCH BAR
+========================= */
+.search-container {
+    width: 100%;
+    padding: 30px 0 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-box {
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    width: 95%;
+    max-width: 700px;
+    padding: 10px 12px 10px 24px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+}
+
+.search-box:focus-within {
+    border-color: var(--fpt-orange);
+    box-shadow: 0 0 0 4px rgba(255, 102, 0, 0.15), var(--shadow-lg);
+}
+
+.search-box i {
+    font-size: 22px;
+    color: var(--text-sub);
+}
+
+.search-box input {
+    flex: 1;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--text-main);
+}
+
+.search-box input::placeholder {
+    color: var(--text-sub);
+}
+
+.search-box button {
+    padding: 12px 28px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    background: linear-gradient(135deg, var(--fpt-orange), var(--fpt-orange-glow));
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3);
+    transition: var(--transition);
+}
+
+.search-box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 102, 0, 0.4);
+}
+
+.search-box button:active {
+    transform: scale(0.97);
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+.container {
+    max-width: 900px;
+    margin: 0 auto 40px;
+    padding: 0 20px;
+}
+
+.container h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 24px;
+}
+
+/* =========================
+   RESULT ITEM CARD
+========================= */
+.qa-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px;
+    margin-bottom: 18px;
+    display: flex;
+    gap: 18px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.qa-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(0, 87, 184, 0.2);
+}
+
+.qa-avatar {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--fpt-blue), var(--fpt-blue-glow));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0,87,184,0.3);
+}
+
+.qa-main {
+    flex: 1;
+}
+
+.qa-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.qa-question {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.4;
+}
+
+.qa-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--fpt-green), #22c55e);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    box-shadow: 0 3px 8px rgba(22,163,74,0.3);
+}
+
+.qa-info {
+    font-size: 14px;
+    color: var(--text-sub);
+    margin-bottom: 10px;
+}
+
+.qa-answer {
+    margin-top: 10px;
+    padding-left: 14px;
+    border-left: 3px solid var(--fpt-blue);
+    font-size: 15px;
+    color: var(--text-sub);
+    line-height: 1.6;
+}
+
+/* =========================
+   HIGHLIGHT KEYWORD
+========================= */
+mark {
+    background: #fef08a;
+    color: #854d0e;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.dark-mode mark {
+    background: #713f12;
+    color: #fef08a;
+}
+
+/* =========================
+   NO RESULT MESSAGE
+========================= */
+.no-result {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--text-sub);
+    font-size: 18px;
+}
+
+/* =========================
+   LOADING SPINNER
+========================= */
+.loader {
+    width: 44px;
+    height: 44px;
+    border: 4px solid var(--border);
+    border-top-color: var(--fpt-blue);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 60px auto;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* =========================
+   FADE IN ANIMATION
+========================= */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+@media (max-width: 768px) {
+    .search-box {
+        width: 90%;
+        padding: 8px 10px 8px 18px;
+    }
+
+    .search-box button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .qa-item {
+        padding: 18px;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .qa-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .qa-question {
+        font-size: 17px;
+    }
+
+    .qa-answer {
+        font-size: 14px;
+    }
+
+    .container h2 {
+        font-size: 24px;
+    }
+
+    .theme-toggle {
+        bottom: 16px;
+        left: 16px;
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-box {
+        width: 95%;
+    }
+
+    .qa-question {
+        font-size: 16px;
+    }
+
+    .qa-avatar {
+        width: 44px;
+        height: 44px;
+        font-size: 24px;
+    }
+
+    .qa-item {
+        padding: 16px;
+    }
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết quả tìm kiếm - FPT Networking</title>
+    <link rel="icon" type="image/png" href="fpt-logo2.png">
+    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="search.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <!-- Theme Controller - Load FIRST to prevent flash -->
+    <script src="theme-controller.js"></script>
+</head>
+<body>
+
+<!-- Theme Toggle Button (Top Right) -->
+<div class="theme-toggle" onclick="toggleTheme()">
+    <span id="theme-icon">🌙</span>
+</div>
+
+<section class="search-container">
+    <div class="search-box">
+        <i class='bx bx-search'></i>
+        <input type="text" id="searchInput" placeholder="Tìm câu hỏi..." />
+        <button onclick="executeSearch()">Tìm kiếm</button>
+    </div>
+</section>
+
+<div class="container">
+    <h2>Kết quả tìm kiếm</h2>
+    <div id="results"></div>
+</div>
+
+<script type="module" src="search.js"></script>
+
+</body>
+</html>

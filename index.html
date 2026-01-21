@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FPT Networking</title>
+    <link rel="icon" type="image/png" href="fpt-logo2.png">
+    <link rel="stylesheet" href="style3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <!-- Theme Controller - Load FIRST to prevent flash -->
+    <script src="theme-controller.js"></script>
+</head>
+<body>
+
+<!-- Theme Toggle Button (Top Right) -->
+<div class="theme-toggle" onclick="toggleTheme()">
+    <span id="theme-icon">🌙</span>
+</div>
+
+<div id="progress-bar"></div>
+
+<header class="header">
+    <div class="left-box">
+        <img src="Logo.png" class="logo" alt="FPT Logo">
+        <div class="title">
+            <h1>FPT Networking</h1>
+            <p>Kết nối — Hỗ trợ — Chia sẻ dành cho sinh viên FPT</p>
+        </div>
+    </div>
+    <div class="right">
+        <img src="campus_dn.png" alt="Campus FPT">
+    </div>
+</header>
+
+<section class="search-container">
+    <div class="search-box">
+        <i class='bx bx-search'></i>
+        <input type="text" id="searchInput" placeholder="Tìm câu hỏi, thủ tục...">
+        <button onclick="executeSearch()">Tìm kiếm</button>
+    </div>
+</section>
+
+<div class="container">
+    <div class="left-col">
+        <div id="tab-container">
+            <!-- ====================== TABS ====================== -->
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('all', this)">
+                    <i class="bx bxs-grid-alt"></i> Tất cả
+                </button>
+                <button class="tab" onclick="showTab('campus', this)">
+                    <i class="bx bxs-institution"></i> Khuôn viên
+                </button>
+                <button class="tab" onclick="showTab('admin', this)">
+                    <i class="bx bxs-file-blank"></i> Hành chính
+                </button>
+                <button class="tab" onclick="showTab('study', this)">
+                    <i class="bx bxs-book-reader"></i> Học tập
+                </button>
+                <button class="tab" onclick="showTab('project', this)">
+                    <i class='bx bxs-rocket'></i> Dự án
+                </button>
+            </div>
+
+            <!-- ====================== DANH SÁCH CÂU HỎI ====================== -->
+
+            <!-- TẤT CẢ -->
+            <div id="all" class="qa-list">
+                <div class="qa-item" onclick="toggleAnswer(this)">
+                    <div class="qa-avatar"><i class='bx bxs-user-circle'></i></div>
+                    <div class="qa-main">
+                        <div class="qa-top">
+                            <h3 class="qa-question">Sinh viên có được dùng thang máy không?</h3>
+                            <span class="qa-badge">ĐÃ GIẢI ĐÁP</span>
+                        </div>
+                        <p class="qa-info">👤 Admin • 📁 Khuôn viên</p>
+                        <div class="qa-answer">Sinh viên được sử dụng thang máy tại khu vực cho phép.</div>
+                    </div>
+                </div>
+
+                <div class="qa-item" onclick="toggleAnswer(this)">
+                    <div class="qa-avatar"><i class='bx bxs-user-circle'></i></div>
+                    <div class="qa-main">
+                        <div class="qa-top">
+                            <h3 class="qa-question">Thủ tục xin giấy xác nhận sinh viên?</h3>
+                            <span class="qa-badge">ĐÃ GIẢI ĐÁP</span>
+                        </div>
+                        <p class="qa-info">👤 Admin • 📁 Hành chính</p>
+                        <div class="qa-answer">Đến phòng HC-NS để được cấp giấy xác nhận.</div>
+                    </div>
+                </div>
+
+                <div class="qa-item" onclick="toggleAnswer(this)">
+                    <div class="qa-avatar"><i class='bx bxs-user-circle'></i></div>
+                    <div class="qa-main">
+                        <div class="qa-top">
+                            <h3 class="qa-question">Cách đăng ký học cải thiện?</h3>
+                            <span class="qa-badge">ĐÃ GIẢI ĐÁP</span>
+                        </div>
+                        <p class="qa-info">👤 Admin • 📁 Học tập</p>
+                        <div class="qa-answer">Vào AP → Đăng ký cải thiện.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KHUÔN VIÊN -->
+            <div id="campus" class="qa-list hidden">
+                <div class="qa-item" onclick="toggleAnswer(this)">
+                    <div class="qa-avatar"><i class='bx bxs-user-circle'></i></div>
+                    <div class="qa-main">
+                        <div class="qa-top">
+                            <h3 class="qa-question">Khu vực gửi xe nằm ở đâu?</h3>
+                            <span class="qa-badge">ĐÃ GIẢI ĐÁP</span>
+                        </div>
+                        <p class="qa-info">👤 Admin • 📁 Khuôn viên</p>
+                        <div class="qa-answer">Gửi xe ở phía sau tòa Gamma.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HÀNH CHÍNH -->
+            <div id="admin" class="qa-list hidden">
+                <div class="qa-item" onclick="toggleAnswer(this)">
+                    <div class="qa-avatar"><i class='bx bxs-user-circle'></i></div>
+                    <div class="qa-main">
+                        <div class="qa-top">
+                            <h3 class="qa-question">Thủ tục xin giấy xác nhận sinh viên?</h3>
+                            <span class="qa-badge">ĐÃ GIẢI ĐÁP</span>
+                        </div>
+                        <p class="qa-info">👤 Admin • 📁 Hành chính</p>
+                        <div class="qa-answer">Mang CCCD đến phòng Hành chính.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HỌC TẬP -->
+            <div id="study" class="qa-list hidden">
+                <div class="qa-item" onclick="toggleAnswer(this)">
+                    <div class="qa-avatar"><i class='bx bxs-user-circle'></i></div>
+                    <div class="qa-main">
+                        <div class="qa-top">
+                            <h3 class="qa-question">Cách đăng ký học cải thiện?</h3>
+                            <span class="qa-badge">ĐÃ GIẢI ĐÁP</span>
+                        </div>
+                        <p class="qa-info">👤 Admin • 📁 Học tập</p>
+                        <div class="qa-answer">Vào AP → Đăng ký cải thiện.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DỰ ÁN -->
+            <div id="project" class="qa-list hidden">
+                <div class="qa-item" onclick="toggleAnswer(this)">
+                    <div class="qa-avatar"><i class='bx bxs-user-circle'></i></div>
+                    <div class="qa-main">
+                        <div class="qa-top">
+                            <h3 class="qa-question">Cách đăng ký học cải thiện?</h3>
+                            <span class="qa-badge">ĐÃ GIẢI ĐÁP</span>
+                        </div>
+                        <p class="qa-info">👤 Admin • 📁 Dự án</p>
+                        <div class="qa-answer">Vào AP → Đăng ký cải thiện.</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <aside class="right-col">
+        <div class="sidebar-box ask-box-new">
+            <h3 class="box-title"><i class='bx bxs-message-rounded-dots'></i> Đặt câu hỏi ẩn danh</h3>
+            <ul class="benefit-list">
+                <li><i class="bx bx-check-shield"></i> Bảo mật danh tính tuyệt đối</li>
+                <li><i class="bx bx-bolt-circle"></i> Duyệt và trả lời nhanh chóng</li>
+                <li><i class="bx bx-directions"></i> Chuyển đúng bộ phận hỗ trợ</li>
+            </ul>
+            <div class="input-form">
+                <form id="qa-form">
+                    <textarea id="question" placeholder="Nhập câu hỏi của bạn tại đây..." required></textarea>
+                    <input id="email" type="text" placeholder="Email (để chúng tôi có thể liên lạc với bạn)">
+                    <button type="submit" class="btn-send-qa">Gửi câu hỏi ngay</button>
+                </form>
+            </div>
+        </div>
+        <div class="sidebar-box solve-box-new">
+            <h3 class="box-title"><i class='bx bxs-info-circle'></i> Giải quyết vấn đề</h3>
+            <ul class="solve-list">
+                <li><i class='bx bx-right-arrow-alt'></i> Đặt câu hỏi ẩn danh nhanh chóng</li>
+                <li><i class='bx bx-right-arrow-alt'></i> Tư vấn học vụ, điểm số</li>
+            </ul>
+        </div>
+    </aside>
+</div>
+
+<script type="module">
+/* ============================================================
+   FIREBASE & APP LOGIC
+============================================================ */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } 
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBGHvy0UldlEWC_fxvG8P4Wac_d86mRtqc",
+    authDomain: "fpt-networking.firebaseapp.com",
+    projectId: "fpt-networking",
+    storageBucket: "fpt-networking.appspot.com",
+    messagingSenderId: "262629580192",
+    appId: "1:262629580192:web:76c978f29db9fddc97e57c"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const searchInput = document.getElementById("searchInput");
+const questionField = document.getElementById("question");
+const qaForm = document.getElementById("qa-form");
+
+// Auto-resize textarea
+if (questionField) {
+    questionField.addEventListener("input", function () {
+        this.style.height = "auto";
+        this.style.height = this.scrollHeight + "px";
+    });
+}
+
+// Search function
+window.executeSearch = function () {
+    const query = searchInput ? searchInput.value.trim() : "";
+    if (!query) return alert("Vui lòng nhập nội dung cần tìm!");
+    window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+};
+
+// Tab switching
+window.showTab = function (tabName, element) {
+    document.querySelectorAll(".tab").forEach(btn => btn.classList.remove("active"));
+    if (element) element.classList.add("active");
+
+    document.querySelectorAll(".qa-list").forEach(list => {
+        list.classList.add("hidden");
+        list.style.opacity = 0;
+    });
+
+    const target = document.getElementById(tabName);
+    if (target) {
+        target.classList.remove("hidden");
+        setTimeout(() => target.style.opacity = 1, 20);
+    }
+};
+
+// Toggle answer
+window.toggleAnswer = function (item) {
+    item.classList.toggle("active");
+};
+
+// Enter to search
+if (searchInput) {
+    searchInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") window.executeSearch();
+    });
+}
+
+// Submit question form
+if (qaForm) {
+    qaForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const btn = qaForm.querySelector(".btn-send-qa");
+        const question = questionField.value.trim();
+        const email = document.getElementById("email").value.trim();
+
+        if (!question) return alert("Vui lòng nhập câu hỏi!");
+
+        btn.disabled = true;
+        btn.innerText = "Đang gửi...";
+
+        try {
+            await addDoc(collection(db, "questions"), {
+                question,
+                email: email || "Ẩn danh",
+                createdAt: serverTimestamp()
+            });
+
+            window.location.href = "thank-you.html";
+        } catch (err) {
+            alert("Lỗi: " + err.message);
+            btn.disabled = false;
+            btn.innerText = "Gửi câu hỏi ngay";
+        }
+    });
+}
+</script>
+
+<!-- Elfsight AI Chatbot -->
+<script src="https://elfsightcdn.com/platform.js" async></script>
+<div class="elfsight-app-b280338c-1279-469a-8c38-99fe0b33031f" data-elfsight-app-lazy></div>
+
+</body>
+</html>
